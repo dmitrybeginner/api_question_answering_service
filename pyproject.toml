@@ -1,16 +1,34 @@
 [project]
 name = "api-question-answering-service"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "dmitr",email = "dmitry_romanof@mail.ru"}
-]
+description = "API сервис для вопросов и ответов на Django + DRF + PostgreSQL"
+authors = [{name = "dmitr", email = "dmitry_romanof@mail.ru"}]
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "django>=5.0,<6.0",
+    "djangorestframework>=3.15,<4.0",
+    "djangorestframework-simplejwt>=5.3,<6.0",
+    "django-cors-headers>=4.3,<5.0",
+    "psycopg2-binary>=2.9,<3.0",
+    "python-dotenv>=1.0,<2.0",
+    "gunicorn>=21.2,<22.0",
+    "drf-spectacular>=0.29.0,<0.30.0",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0.1",
+    "pytest-django>=4.11.1",
+    "pytest-cov>=7.0.0",
+    "ruff>=0.14.5",
+    "black>=25.11.0",
+]
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
